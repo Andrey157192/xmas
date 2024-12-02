@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Selamat Natal Valentin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+        #fullscreenPhoto {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #fullscreenPhoto img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="container mx-auto bg-white bg-opacity-20 rounded-3xl p-10 shadow-2xl relative overflow-hidden max-w-2xl">
+        <div id="snowflakes"></div>
+        
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-white mb-4">
+                Selamat Natal, <span class="text-red-300">Valentin</span> yang istimewa dan berhati lembut.
+            </h1>
+            
+            <button onclick="showPhotoAndPlayMusic()" class="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition duration-300 mt-4">
+                Klik Di Sini untuk Kejutan
+            </button>
+        </div>
+        
+        <div class="text-white text-lg leading-relaxed space-y-4 mt-6">
+            <p>
+                Di malam Natal yang penuh cinta ini, aku ingin menyampaikan sesuatu yang mungkin belum sempat aku ungkapkan sebelumnya. Pertama-tama, terima kasih karena kamu sudah melewati tahun ini dengan keberanian dan ketulusan yang luar biasa. Aku tahu tidak semua hari berjalan mudah, tapi aku kagum dengan caramu tetap kuat menghadapi semuanya. Kamu adalah sosok yang luar biasa, dan aku sangat beruntung bisa mengenalmu.
+            </p>
+            
+            <p>
+                Namun, di balik rasa bangga dan kekagumanku, ada hal lain yang ingin aku sampaikan. Maafkan aku jika ada kata-kata, tindakan, atau mungkin sikapku yang tanpa sengaja menyakiti hatimu. Aku tahu, hatimu yang mungil dan lembut itu tak seharusnya terluka, dan aku sungguh menyesal jika aku pernah menjadi penyebabnya. Aku berharap di momen Natal yang penuh kehangatan ini, kamu bersedia memaafkanku.
+            </p>
+            
+            <p>
+                Natal adalah tentang cinta, pengampunan, dan harapan baru. Aku ingin hubungan kita juga seperti itu—lebih kuat, lebih indah, dan penuh makna di masa yang akan datang.
+            </p>
+            
+            <p>
+                Semoga Natal ini membawa kedamaian di hatimu, membawa kebahagiaan yang tak terhingga, dan menjadi awal dari langkah-langkah penuh harapan menuju tahun yang baru. Aku berdoa semoga semua impian dan cita-citamu terwujud, karena kamu layak mendapatkan yang terbaik. Dan jangan lupa, teruslah menjadi dirimu—semakin bijaksana, semakin bahagia, dan tentu saja semakin cantik, di luar maupun di dalam.
+            </p>
+            
+            <p class="font-bold">
+                Selamat Natal dan Tahun Baru, Valentin. Semoga kedamaian dan cinta selalu menyertaimu. Aku akan selalu ada untuk mendukungmu, apa pun yang terjadi. 🎄✨
+            </p>
+        </div>
+    </div>
+
+    <!-- Fullscreen Photo Modal -->
+    <div id="fullscreenPhoto" onclick="closePhoto()">
+        <img src="image.png" alt="Foto Kenangan">
+    </div>
+
+    <!-- Audio untuk Lagu Natal -->
+    <audio id="christmasMusic">
+        <source src="wwd.mp3juice.blog - Jingle Bells (Instrumental).mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Generate snowflakes
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            for(let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                snowflake.style.opacity = Math.random();
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+
+        function showPhotoAndPlayMusic() {
+            // Tampilkan foto fullscreen
+            const fullscreenPhoto = document.getElementById('fullscreenPhoto');
+            fullscreenPhoto.style.display = 'flex';
+
+            // Mainkan musik Natal
+            const music = document.getElementById('christmasMusic');
+            music.play();
+        }
+
+        function closePhoto() {
+            // Tutup foto
+            const fullscreenPhoto = document.getElementById('fullscreenPhoto');
+            fullscreenPhoto.style.display = 'none';
+
+            // Hentikan musik
+            const music = document.getElementById('christmasMusic');
+            music.pause();
+            music.currentTime = 0;
+        }
+
+        createSnowflakes();
+    </script>
+</body>
+</html>
